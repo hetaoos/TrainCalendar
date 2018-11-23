@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Ical.Net" Version="4.1.9" />
     <PackageReference Include="LiteDB" Version="4.1.4" />
-    <PackageReference Include="MailKit" Version="2.0.6" />
+    <PackageReference Include="MailKit" Version="2.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0-dev-00024" />
   </ItemGroup>
