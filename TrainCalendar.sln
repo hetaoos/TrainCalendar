@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainCalendar", "TrainCalendar\TrainCalendar.csproj", "{11FF5B13-9550-4CA7-9C0C-BFF6EA3B92FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1C174AC-A74A-4370-8CDF-E8BFAE3B5D10}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11FF5B13-9550-4CA7-9C0C-BFF6EA3B92FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11FF5B13-9550-4CA7-9C0C-BFF6EA3B92FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11FF5B13-9550-4CA7-9C0C-BFF6EA3B92FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11FF5B13-9550-4CA7-9C0C-BFF6EA3B92FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB4583EF-B0E1-44FC-AF57-09B3FC6E3350}
+	EndGlobalSection
+EndGlobal
