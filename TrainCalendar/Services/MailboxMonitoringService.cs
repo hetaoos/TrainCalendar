@@ -40,15 +40,14 @@ namespace TrainCalendar.Services
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var isOk = await Connect(stoppingToken);
-            if (isOk == false)
-                return;
-            this.stoppingToken = stoppingToken;
-
             client?.Dispose();
             client = new ImapClient();
             client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
+            var isOk = await Connect(stoppingToken);
+            if (isOk == false)
+                return;
+            this.stoppingToken = stoppingToken;
             var inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadWrite);
             inbox.Subscribe();
