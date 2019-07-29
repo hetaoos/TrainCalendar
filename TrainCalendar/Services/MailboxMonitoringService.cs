@@ -70,7 +70,10 @@ namespace TrainCalendar.Services
                 else
                 {
                     client.NoOp(stoppingToken);
-                    WaitHandle.WaitAny(new[] { cancellationTokenSourceIdle.Token.WaitHandle, stoppingToken.WaitHandle });
+                    using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationTokenSourceIdle.Token, stoppingToken))
+                    {
+                        await Task.Delay(TimeSpan.FromMinutes(3), linkedCts.Token);
+                    }
                 }
             }
 
