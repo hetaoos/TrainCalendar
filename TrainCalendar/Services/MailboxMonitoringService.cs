@@ -32,9 +32,6 @@ namespace TrainCalendar.Services
             this.db = db;
             this.mailProcesses = mailProcesses;
             this.options = options;
-
-            client = new ImapClient();
-            client.ServerCertificateValidationCallback = (s, c, h, e) => true;
             cfg = db.GetConfig<Config>(() => new Config());
             //cfg.max_mail_id = 0;
         }
@@ -47,6 +44,11 @@ namespace TrainCalendar.Services
             if (isOk == false)
                 return;
             this.stoppingToken = stoppingToken;
+
+            client?.Dispose();
+            client = new ImapClient();
+            client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
             var inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadWrite);
             inbox.Subscribe();
@@ -64,14 +66,13 @@ namespace TrainCalendar.Services
                 await FetchNewMails();
                 cancellationTokenSourceIdle?.Dispose();
                 cancellationTokenSourceIdle = new CancellationTokenSource(TimeSpan.FromMinutes(3));
-
-                if (has)
-                    await client.IdleAsync(cancellationTokenSourceIdle.Token, stoppingToken);
-                else
+                using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationTokenSourceIdle.Token, stoppingToken))
                 {
-                    client.NoOp(stoppingToken);
-                    using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationTokenSourceIdle.Token, stoppingToken))
+                    if (has)
+                        await client.IdleAsync(linkedCts.Token, stoppingToken);
+                    else
                     {
+                        client.NoOp(linkedCts.Token);
                         await Task.Delay(TimeSpan.FromMinutes(3), linkedCts.Token);
                     }
                 }
